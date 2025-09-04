@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">ListaRolavel</string>
     <string name="foto_do_aluno">Foto do aluno</string>
-    <string name="arthur">Arthur</string>
-    <string name="mecatronicadev">Mecatrônica/DEV</string>
 </resources>

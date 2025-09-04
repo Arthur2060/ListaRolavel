@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -52,11 +53,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ListaRolavelApp(modifier: Modifier = Modifier) {
     ListaRolavelTheme {
-        CardAluno(modifier = modifier,
-            aluno = Aluno(
-                nome = R.string.arthur,
-                curso = R.string.mecatronicadev,
-                imagen = R.drawable.ic_launcher_foreground
+        ListaDeAlunos(
+            listaDeAlunos = listOf(
+                Aluno("Arthur", "Mecatrônica/DEV"),
+                Aluno("Pedro", "DEV"),
+                Aluno("Algusto", "Mecatrônica"),
             )
         )
     }
@@ -78,7 +79,7 @@ fun CardAluno(modifier: Modifier = Modifier,
             horizontalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(aluno.imagen),
+                painter = painterResource(R.drawable.ic_launcher_foreground),
                 contentDescription = stringResource(R.string.foto_do_aluno),
             )
             Column (
@@ -87,17 +88,30 @@ fun CardAluno(modifier: Modifier = Modifier,
 
                 Text(
                     modifier = modifier,
-                    text = stringResource(aluno.nome),
+                    text = aluno.nome,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     modifier = modifier,
-                    text = stringResource(aluno.curso),
+                    text = aluno.curso,
                     fontSize = 11.sp
                 )
             }
         }
 
+    }
+}
+
+@Composable
+fun ListaDeAlunos(modifier: Modifier = Modifier, listaDeAlunos: List<Aluno>) {
+    LazyColumn(
+        modifier = modifier,
+    ) {
+        for (aluno in listaDeAlunos) {
+            item {
+                CardAluno(aluno = aluno)
+            }
+        }
     }
 }
