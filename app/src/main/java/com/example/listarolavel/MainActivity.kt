@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.listarolavel.data.Aluno
+import com.example.listarolavel.data.DataResource
 import com.example.listarolavel.ui.theme.ListaRolavelTheme
 
 class MainActivity : ComponentActivity() {
@@ -54,11 +55,7 @@ class MainActivity : ComponentActivity() {
 fun ListaRolavelApp(modifier: Modifier = Modifier) {
     ListaRolavelTheme {
         ListaDeAlunos(
-            listaDeAlunos = listOf(
-                Aluno("Arthur", "Mecatrônica/DEV"),
-                Aluno("Pedro", "DEV"),
-                Aluno("Algusto", "Mecatrônica"),
-            )
+            listaDeAlunos = DataResource().loadAlunos()
         )
     }
 }
