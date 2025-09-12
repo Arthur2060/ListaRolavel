@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -45,12 +43,41 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+@Preview(
+    showSystemUi = true,
+    showBackground = true
+)
+@Composable
+fun ListaRolavelPreviewDarkTheme() {
+    ListaRolavelTheme(darkTheme = true) {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            ListaRolavelApp(
+                modifier = Modifier
+                    .padding(innerPadding)
 
+            )
+
+        }
+    }
+}
 
 @Preview(
-    showBackground = true,
-    showSystemUi = true
+    showSystemUi = true,
+    showBackground = true
 )
+@Composable
+fun ListaRolavelPreview() {
+    ListaRolavelTheme {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            ListaRolavelApp(
+                modifier = Modifier
+                    .padding(innerPadding)
+
+            )
+
+        }
+    }
+}
 @Composable
 fun ListaRolavelApp(modifier: Modifier = Modifier) {
     ListaRolavelTheme {
@@ -59,7 +86,6 @@ fun ListaRolavelApp(modifier: Modifier = Modifier) {
         )
     }
 }
-
 @Composable
 fun CardAluno(modifier: Modifier = Modifier,
               aluno: Aluno) {
@@ -99,7 +125,6 @@ fun CardAluno(modifier: Modifier = Modifier,
 
     }
 }
-
 @Composable
 fun ListaDeAlunos(modifier: Modifier = Modifier, listaDeAlunos: List<Aluno>) {
     LazyColumn(
