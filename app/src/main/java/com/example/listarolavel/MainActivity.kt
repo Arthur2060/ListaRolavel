@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -163,6 +164,21 @@ fun TopBar(modifier: Modifier = Modifier) {
         Image(
             painterResource(R.drawable.ic_launcher_foreground),
             contentDescription = ""
+        )
+    }
+}
+
+@Composable
+fun NotaEFalta(
+    modifier: Modifier = Modifier,
+    @StringRes notaEFalta: Int
+) {
+    Column {
+        Text(
+            text = stringResource(R.string.notas_e_faltas)
+        )
+        Text(
+            text = stringResource(notaEFalta)
         )
     }
 }
