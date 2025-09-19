@@ -122,38 +122,47 @@ fun CardAluno(modifier: Modifier = Modifier,
         shape = Shapes.small,
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
-        Row(
-            modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(R.drawable.ic_launcher_foreground),
-                contentDescription = stringResource(R.string.foto_do_aluno),
-            )
-            Column (
+        Column {
+            Row(
                 modifier = modifier,
-                horizontalAlignment = Alignment.CenterHorizontally
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
             ) {
-
-                Text(
-                    modifier = modifier,
-                    text = aluno.nome,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold
+                Image(
+                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    contentDescription = stringResource(R.string.foto_do_aluno),
                 )
-                Text(
+                Column(
                     modifier = modifier,
-                    text = aluno.curso,
-                    fontSize = 11.sp
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    Text(
+                        modifier = modifier,
+                        text = aluno.nome,
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        modifier = modifier,
+                        text = aluno.curso,
+                        fontSize = 11.sp
+                    )
+                }
+                Spacer(modifier = modifier.weight(1f))
+                BotaoExpandir(
+                    modifier = modifier,
+                    onClick = { expanded = !expanded },
+                    expanded = expanded
+                )
+
+            }
+            if (expanded) {
+                NotaEFalta(
+                    modifier = Modifier,
+                    notaEFalta = R.string.notas_e_faltas
                 )
             }
-            Spacer(modifier = modifier.weight(1f))
-            BotaoExpandir(
-                modifier = modifier,
-                onClick = {  },
-                expanded = expanded
-            )
         }
     }
 }
