@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
@@ -122,23 +126,34 @@ fun CardAluno(modifier: Modifier = Modifier,
         shape = Shapes.small,
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
-        Column {
+        Column (
+            modifier = modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioNoBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
+        ) {
             Row(
                 modifier = modifier,
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
                 Image(
+                    modifier = modifier
+                        .weight(1f),
                     painter = painterResource(R.drawable.ic_launcher_foreground),
                     contentDescription = stringResource(R.string.foto_do_aluno),
                 )
                 Column(
-                    modifier = modifier,
+                    modifier = modifier
+                        .weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Text(
-                        modifier = modifier,
+                        modifier = modifier
+                            ,
                         text = aluno.nome,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold
@@ -149,9 +164,10 @@ fun CardAluno(modifier: Modifier = Modifier,
                         fontSize = 11.sp
                     )
                 }
-                Spacer(modifier = modifier.weight(1f))
                 BotaoExpandir(
-                    modifier = modifier,
+                    modifier = modifier
+                        .weight(0.5f)
+                        .wrapContentSize(Alignment.CenterEnd),
                     onClick = { expanded = !expanded },
                     expanded = expanded
                 )
@@ -160,7 +176,8 @@ fun CardAluno(modifier: Modifier = Modifier,
             if (expanded) {
                 NotaEFalta(
                     modifier = Modifier,
-                    notaEFalta = R.string.notas_e_faltas
+                    nota = aluno.notaMedia,
+                    faltas = aluno.faltasTotais
                 )
             }
         }
@@ -197,14 +214,16 @@ fun TopBar(modifier: Modifier = Modifier) {
 @Composable
 fun NotaEFalta(
     modifier: Modifier = Modifier,
-    @StringRes notaEFalta: Int
+    nota: Double,
+    faltas: Int,
 ) {
     Column {
         Text(
             text = stringResource(R.string.notas_e_faltas)
         )
         Text(
-            text = stringResource(notaEFalta)
+            text = "Media: $nota \n" +
+                    "Faltas: $faltas"
         )
     }
 }
@@ -220,7 +239,7 @@ fun BotaoExpandir(
         modifier = modifier
     ) {
         Icon(
-            imageVector = Icons.Filled.ExpandMore,
+            imageVector = if (!expanded) Icons.Filled.ExpandMore else Icons.Filled.ExpandLess,
             contentDescription = "",
             tint = MaterialTheme.colorScheme.secondary
         )
