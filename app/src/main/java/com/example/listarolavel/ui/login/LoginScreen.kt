@@ -1,10 +1,14 @@
 package com.example.listarolavel.ui.login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -13,8 +17,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @Preview(
     showSystemUi = true,
@@ -22,45 +26,55 @@ import androidx.compose.ui.tooling.preview.Preview
 )
 @Composable
 fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
-    val _UIState by loginViewModel.uiState.collectAsState()
+    val uiState by loginViewModel.uiState.collectAsState()
 
     Surface(
         modifier = Modifier
-            .fillMaxSize(),
     )
     {
-        Card (
+        Column(
             modifier = Modifier
                 .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
+            Card (
                 modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .background(MaterialTheme.colorScheme.background),
             ) {
-                MyTextField(
-                    onValueChange = { loginViewModel.mudarLogin(it) },
-                    value = loginViewModel.login,
-                    label = _UIState.labelLogin,
-                    placeholder = _UIState.labelLogin,
-                    isError = _UIState.errouLoginESenha
-                )
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp),
+                ) {
+                    MyTextField(
+                        onValueChange = { loginViewModel.mudarLogin(it) },
+                        value = loginViewModel.login,
+                        label = uiState.labelLogin,
+                        placeholder = uiState.labelLogin,
+                        isError = uiState.errouLoginESenha
+                    )
 
-                MyTextField(
-                    onValueChange = { loginViewModel.mudarSenha(it) },
-                    value = loginViewModel.senha,
-                    label = _UIState.labelSenha,
-                    placeholder = _UIState.labelSenha,
-                    isError = _UIState.errouLoginESenha
-                )
+                    MyTextField(
+                        onValueChange = { loginViewModel.mudarSenha(it) },
+                        value = loginViewModel.senha,
+                        label = uiState.labelSenha,
+                        placeholder = uiState.labelSenha,
+                        isError = uiState.errouLoginESenha
+                    )
 
-                LoginButton(
-                    onClick = { loginViewModel.logar() }
-                )
+                    Row(
+                        modifier = Modifier,
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        LoginButton(
+                            onClick = { loginViewModel.logar() }
+                        )
+                    }
 
-                if (_UIState.loginSucesso) {
-                    Text("Acertou!!!!!!!!!!!!!")
+
+                    if (uiState.loginSucesso) {
+                        Text("Acertou!!!!!!!!!!!!!")
+                    }
                 }
             }
         }
