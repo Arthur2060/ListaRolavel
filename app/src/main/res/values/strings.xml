@@ -2,4 +2,5 @@
     <string name="app_name">ListaRolavel</string>
     <string name="foto_do_aluno">Foto do aluno</string>
     <string name="notas_e_faltas">Notas e faltas:</string>
+    <string name="placeholder">Placeholder</string>
 </resources>

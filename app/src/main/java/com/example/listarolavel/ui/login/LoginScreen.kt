@@ -1,12 +1,18 @@
 package com.example.listarolavel.ui.login
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -17,9 +23,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.painter.BrushPainter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.listarolavel.ListaRolavelPreviewDarkTheme
+import com.example.listarolavel.R
 import com.example.listarolavel.ui.theme.ListaRolavelTheme
 
 @Composable
@@ -43,8 +57,20 @@ fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp),
-                    horizontalAlignment = Alignment.End
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    CampoFoto(
+                        onClick = {}
+                    )
+
+                    MyTextField(
+                        onValueChange = {},
+                        value = uiState.nome,
+                        label = uiState.labelNome,
+                        placeholder = uiState.labelNome,
+                        isError = uiState.errouLoginESenha
+                    )
+
                     MyTextField(
                         onValueChange = { loginViewModel.mudarLogin(it) },
                         value = loginViewModel.login,
@@ -82,7 +108,7 @@ fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
 fun MyTextField(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
-    placeholder: String = "Placeholder",
+    placeholder: String = stringResource(R.string.placeholder),
     value: String,
     label: String,
     isError: Boolean = false,
@@ -110,6 +136,36 @@ fun LoginButton(
         onClick = onClick,
         content = {Text(text)}
     )
+}
+
+@Composable
+fun CampoFoto(
+    modifier: Modifier = Modifier,
+    foto: Int = R.drawable.ic_launcher_foreground,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .padding(6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(
+            modifier = Modifier,
+            onClick = {},
+            colors = ButtonColors(
+                Color.Transparent,
+                Color.Black,
+                Color.Gray,
+                Color.Gray
+            ),
+            content = {
+                Image(
+                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    contentDescription = ""
+                )
+            }
+        )
+    }
 }
 
 @Preview(

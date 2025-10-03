@@ -13,11 +13,20 @@ class LoginViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(LoginUIState())
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
 
+    var nome by mutableStateOf("")
+        private set
+
+    var foto by mutableStateOf("")
+        private set
     var login by mutableStateOf("")
         private set
     var senha by mutableStateOf("")
         private set
 
+    fun mudarNome(novoValue: String) {
+        nome = novoValue
+        reset()
+    }
     fun mudarLogin(novoValue: String) {
         login = novoValue
         reset()
