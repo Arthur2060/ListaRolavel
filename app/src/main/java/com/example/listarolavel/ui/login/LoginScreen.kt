@@ -1,5 +1,6 @@
 package com.example.listarolavel.ui.login
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -10,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,14 +27,18 @@ fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
-        color = Color.Cyan
     )
     {
         Card (
             modifier = Modifier
                 .fillMaxSize(),
         ) {
-            Column {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 MyTextField(
                     onValueChange = { loginViewModel.mudarLogin(it) },
                     value = loginViewModel.login,
