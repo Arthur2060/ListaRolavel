@@ -19,11 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.listarolavel.ListaRolavelPreviewDarkTheme
+import com.example.listarolavel.ui.theme.ListaRolavelTheme
 
-@Preview(
-    showSystemUi = true,
-    showBackground = true
-)
 @Composable
 fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
     val uiState by loginViewModel.uiState.collectAsState()
@@ -38,13 +36,14 @@ fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Card (
+            Card(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background),
             ) {
                 Column(
                     modifier = Modifier
                         .padding(16.dp),
+                    horizontalAlignment = Alignment.End
                 ) {
                     MyTextField(
                         onValueChange = { loginViewModel.mudarLogin(it) },
@@ -64,23 +63,21 @@ fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
 
                     Row(
                         modifier = Modifier,
-                        horizontalArrangement = Arrangement.End
+                        horizontalArrangement = Arrangement.SpaceAround
                     ) {
+                        if (uiState.loginSucesso) {
+                            Text("Acertou!!!!!!!!!!!!!")
+                        }
                         LoginButton(
                             onClick = { loginViewModel.logar() }
                         )
                     }
-
-
-                    if (uiState.loginSucesso) {
-                        Text("Acertou!!!!!!!!!!!!!")
-                    }
                 }
             }
         }
+
     }
 }
-
 @Composable
 fun MyTextField(
     modifier: Modifier = Modifier,
@@ -113,4 +110,26 @@ fun LoginButton(
         onClick = onClick,
         content = {Text(text)}
     )
+}
+
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
+@Composable
+fun ListaRolavelPreview() {
+    ListaRolavelTheme {
+        ScreenApp()
+    }
+}
+
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
+@Composable
+fun ListaRolavelDarkPreview() {
+    ListaRolavelTheme(darkTheme = true) {
+        ScreenApp()
+    }
 }
