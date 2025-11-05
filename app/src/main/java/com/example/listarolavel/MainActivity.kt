@@ -42,7 +42,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.listarolavel.data.Aluno
+import com.example.listarolavel.domain.model.Aluno
 import com.example.listarolavel.data.DataResource
 import com.example.listarolavel.ui.theme.ListaRolavelTheme
 import com.example.listarolavel.ui.theme.backgroundLight
