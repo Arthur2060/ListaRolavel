@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface AlunoDao {
     @Query("SELECT * FROM alunos WHERE deleted = 0 ORDER BY updatedAt DESC")
-    fun listAll(): Flow<List<AlunoEntity>>
+    fun observeAll(): Flow<List<AlunoEntity>>
 
     @Query("SELECT * FROM alunos WHERE id = :id AND deleted = 0")
-    fun findById(id: String): Flow<List<AlunoEntity?>>
+    fun observeById(id: String): Flow<AlunoEntity?>
 
-    @Query("SELECT * FROM alunos WHERE id = :id")
+    @Query("SELECT * FROM alunos WHERE id = :id AND deleted = 0")
     suspend fun getById(id: String): AlunoEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

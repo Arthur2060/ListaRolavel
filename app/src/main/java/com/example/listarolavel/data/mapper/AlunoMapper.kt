@@ -17,6 +17,8 @@ fun AlunoDto.toEntity(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )
 
@@ -30,6 +32,8 @@ fun AlunoDto.toDomain() = Aluno(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )
 
@@ -43,6 +47,8 @@ fun AlunoEntity.toDomain() = Aluno(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )
 
@@ -56,6 +62,8 @@ fun AlunoEntity.toDto() = AlunoDto(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )
 
@@ -71,6 +79,8 @@ fun Aluno.toEntity(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )
 
@@ -84,5 +94,7 @@ fun Aluno.toDto() = AlunoDto(
     pendingSync = pendingSync,
     deleted = deleted,
     updatedAt = updatedAt,
+    localOnly = localOnly,
+    operationType = operationType,
     login = login
 )

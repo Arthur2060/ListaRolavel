@@ -8,8 +8,10 @@ data class AlunoDto (
     val faltasTotais: Int,
     val pendingSync: Boolean,
     val updatedAt: Long,
+    val localOnly: Boolean,
+    val operationType: String?,
     val deleted: Boolean,
 
     val login: String,
-    val senha: String
+    val senha: String?
 )

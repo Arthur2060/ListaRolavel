@@ -7,9 +7,11 @@ data class Aluno(
     val notaMedia: Double,
     val faltasTotais: Int,
     val pendingSync: Boolean,
+    val localOnly: Boolean,
+    val operationType: String?,
     val updatedAt: Long,
     val deleted: Boolean,
 
     val login: String,
-    val senha: String
+    val senha: String?
 )
