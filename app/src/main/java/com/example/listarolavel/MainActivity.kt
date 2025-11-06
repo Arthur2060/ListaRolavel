@@ -47,7 +47,9 @@ import com.example.listarolavel.data.DataResource
 import com.example.listarolavel.ui.theme.ListaRolavelTheme
 import com.example.listarolavel.ui.theme.backgroundLight
 import com.example.woof.ui.theme.Shapes
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

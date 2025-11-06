@@ -1,4 +1,4 @@
-package com.example.listarolavel.ui.login
+package com.example.listarolavel.ui.feature.login
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

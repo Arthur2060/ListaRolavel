@@ -1,4 +1,4 @@
-package com.example.listarolavel.ui.login
+package com.example.listarolavel.ui.feature.login
 
 data class LoginUIState (
     val nome: String = "",

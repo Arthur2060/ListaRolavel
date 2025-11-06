@@ -4,12 +4,11 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import androidx.core.net.toUri
 import com.example.listarolavel.data.local.dao.AlunoDao
 import com.example.listarolavel.data.local.entity.AlunoEntity
 import com.example.listarolavel.data.mapper.toDomain
 import com.example.listarolavel.data.mapper.toEntity
-import com.example.listarolavel.data.remote.dto.AlunoApi
+import com.example.listarolavel.data.remote.AlunoApi
 import com.example.listarolavel.data.worker.AlunoSyncScheduler
 import com.example.listarolavel.di.IoDispatcher
 import com.example.listarolavel.domain.model.Aluno

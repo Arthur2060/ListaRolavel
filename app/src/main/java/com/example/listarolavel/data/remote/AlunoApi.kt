@@ -1,34 +1,30 @@
-package com.example.listarolavel.data.remote.dto
+package com.example.listarolavel.data.remote
 
+
+import com.example.listarolavel.data.remote.dto.AlunoDto
 import okhttp3.RequestBody
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Part
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface AlunoApi {
-    @GET("alunos")
+    @GET("usuarios")
     suspend fun list(): List<AlunoDto>
 
-    @GET("alunos/{id}")
+    @GET("usuarios/{id}")
     suspend fun get(@Path("id") id: String): AlunoDto
 
     @Multipart
-    @POST("alunos")
+    @POST("usuarios")
     suspend fun create(
         @Part("dados") dadosJson: RequestBody
     ): AlunoDto
 
     @Multipart
-    @PUT("alunos/{id}")
+    @PUT("usuarios/{id}")
     suspend fun update(
         @Path("id") id: String,
         @Part("dados") dadosJson: RequestBody
     ): AlunoDto
 
-    @DELETE("alunos/{id}")
+    @DELETE("usuarios/{id}")
     suspend fun delete(@Path("id") id: String)
 }
