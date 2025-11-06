@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.listarolavel.ui.feature.login.LoginScreen
 import com.example.listarolavel.ui.session.AuthState
 import com.example.listarolavel.ui.session.AuthStateViewModel
 
@@ -37,7 +38,7 @@ fun AppNavGraph(nav: NavHostController, modifier: Modifier = Modifier) {
         }
 
         composable(Routes.Login) {
-
+            LoginScreen()
         }
 
         composable(Routes.cadastro) {

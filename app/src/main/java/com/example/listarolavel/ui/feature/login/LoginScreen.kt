@@ -28,72 +28,11 @@ import com.example.listarolavel.R
 import com.example.listarolavel.ui.theme.ListaRolavelTheme
 
 @Composable
-fun ScreenApp(loginViewModel: LoginViewModel = LoginViewModel()) {
-    val uiState by loginViewModel.uiState.collectAsState()
-
-    Surface(
-        modifier = Modifier
-    )
-    {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Card(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background),
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    CampoFoto(
-                        onClick = {}
-                    )
-
-                    MyTextField(
-                        onValueChange = {},
-                        value = uiState.nome,
-                        label = uiState.labelNome,
-                        placeholder = uiState.labelNome,
-                        isError = uiState.errouLoginESenha
-                    )
-
-                    MyTextField(
-                        onValueChange = { loginViewModel.mudarLogin(it) },
-                        value = loginViewModel.login,
-                        label = uiState.labelLogin,
-                        placeholder = uiState.labelLogin,
-                        isError = uiState.errouLoginESenha
-                    )
-
-                    MyTextField(
-                        onValueChange = { loginViewModel.mudarSenha(it) },
-                        value = loginViewModel.senha,
-                        label = uiState.labelSenha,
-                        placeholder = uiState.labelSenha,
-                        isError = uiState.errouLoginESenha
-                    )
-
-                    Row(
-                        modifier = Modifier,
-                        horizontalArrangement = Arrangement.SpaceAround
-                    ) {
-                        if (uiState.loginSucesso) {
-                            Text("Acertou!!!!!!!!!!!!!")
-                        }
-                        LoginButton(
-                            onClick = { loginViewModel.logar() }
-                        )
-                    }
-                }
-            }
-        }
-
-    }
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
+fun LoginScreen(loginViewModel: LoginViewModel = LoginViewModel()) {
 }
 @Composable
 fun MyTextField(
@@ -156,27 +95,5 @@ fun CampoFoto(
                 )
             }
         )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
-@Composable
-fun ListaRolavelPreview() {
-    ListaRolavelTheme {
-        ScreenApp()
-    }
-}
-
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
-@Composable
-fun ListaRolavelDarkPreview() {
-    ListaRolavelTheme(darkTheme = true) {
-        ScreenApp()
     }
 }
